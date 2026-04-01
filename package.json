@@ -1,0 +1,72 @@
+{
+  "name": "ace-codex",
+  "displayName": "ACE-Codex",
+  "description": "Free GitHub Copilot alternative using local Ollama models. 100% private, no API key needed.",
+  "version": "0.1.0",
+  "publisher": "teeeteee23",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Machine Learning", "Programming Languages", "Other"],
+  "keywords": ["copilot", "ollama", "ai", "code completion", "local llm", "privacy"],
+  "icon": "assets/icon.png",
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ace-codex.selectModel",
+        "title": "ACE-Codex: Select Model"
+      },
+      {
+        "command": "ace-codex.indexWorkspace",
+        "title": "ACE-Codex: Index Workspace (RAG)"
+      },
+      {
+        "command": "ace-codex.voiceInput",
+        "title": "ACE-Codex: Voice Input"
+      }
+    ],
+    "configuration": {
+      "title": "ACE-Codex",
+      "properties": {
+        "ace-codex.model": {
+          "type": "string",
+          "default": "codellama",
+          "description": "Ollama model to use for completions"
+        },
+        "ace-codex.ollamaUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Ollama server URL"
+        },
+        "ace-codex.ragEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable RAG context from your codebase"
+        },
+        "ace-codex.voiceEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Whisper voice input"
+        },
+        "ace-codex.maxTokens": {
+          "type": "number",
+          "default": 150,
+          "description": "Maximum tokens per completion"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}
